@@ -23,8 +23,9 @@
 			document.cookie = "lastvisit=" + encodeURIComponent(currentDate);	
 			document.writeln("Welcome to the page, your cookie expires on " + decodeURIComponent(expirationDate));
 	
-var cookieString = decodeURIComponent(document.cookie);
-document.write("<br> cookie =  " + cookieString);
+	// Display cookie contents for debugging
+ 	// var cookieString = decodeURIComponent(document.cookie);
+	// document.write("<br> cookie =  " + cookieString);
 	}
 	else {
 		
