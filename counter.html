@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chapter 9</title>
+</head>
+<body>
+<script type="text/javascript">
+
+	function getExpirationDate() {
+				var date = new Date();
+				var year = date.getFullYear();
+				date.setFullYear(year +1);
+				return date;
+			}
+
+
+	if (document.cookie.length == 0) {
+		var visitCount = 1;
+		var expirationDate = getExpirationDate();
+		var currentDate = new Date();
+			document.cookie = "expires=" + encodeURIComponent(expirationDate);
+			document.cookie = "visits=" + visitCount;
+			document.cookie = "lastvisit=" + encodeURIComponent(currentDate);	
+			document.writeln("Welcome to the page, your cookie expires on " + decodeURIComponent(expirationDate));
+	
+	// Display cookie contents for debugging
+ 	// var cookieString = decodeURIComponent(document.cookie);
+	// document.write("<br> cookie =  " + cookieString);
+	}
+	else {
+		
+		var cookieString = decodeURIComponent(document.cookie);
+		var cookieArray = cookieString.split("; ");
+		
+		// Display cookie contents for debugging
+		// document.write("<br> cookie =  " + cookieString);
+
+		var visitsCookie = cookieArray[1];
+		var visitsSplit = visitsCookie.split("=");
+		var visitsNumber = decodeURIComponent(visitsSplit[1]);
+		
+		var visitCount = Number(visitsNumber) + 1;	
+			document.write("<br>Welcome back. This is the " + visitCount + " time you've been here.");
+		var lastVisit = cookieArray[2];
+		var lastSplit = lastVisit.split("=");
+		var lastDate = lastSplit[1];
+			document.write("<br>You were last here on " + lastDate);
+		
+
+
+		var expirationDate = getExpirationDate();
+		var currentDate = new Date();
+			document.write("<br>Your cookie will expire on " + expirationDate);
+
+			document.cookie = "expires=" + encodeURIComponent(expirationDate);
+			document.cookie = "visits=" + encodeURIComponent(visitCount);
+			document.cookie = "lastvisit=" + encodeURIComponent(currentDate);
+
+		// Display cookie contents
+		// var newCookieString = decodeURIComponent(document.cookie);
+		// 	document.write("<br><br> Current cookie:  " + newCookieString);
+	}
+
+
+			</script>
+
+
+</body>
+</html>
